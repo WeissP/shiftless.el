@@ -25,7 +25,32 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
-;;; für Umlaut
+
+;;; Shiftless for Umlaut (qwerty)
+;; forked from https://github.com/DogLooksGood/shiftless.el
+;;
+;; Umlaut mode
+;; #+BEGIN_SRC
+;; ; -> ö
+;; : -> Ö
+;; ' -> ä
+;; " -> Ä
+;; - -> ü
+;; _ -> Ü
+;; S (upper case) -> ß
+;; #+END_SRC
+;;
+;; Function for switching to programming mode: (shiftless-programming)
+;; Function for switching to Umlaut mode: (shiftless-Umlaut)
+;;
+;; you can add Umlaut hook to Org-mode, e.g.
+;; #+BEGIN_SRC elisp
+;;   (defun weiss-org-option ()
+;;     (make-local-variable 'shiftless-upper-rules)
+;;     (shiftless-Umlaut)
+;;     )
+;;   (add-hook 'org-mode-hook 'weiss-org-option)
+;; #+END_SRC
 
 ;;; Commentary:
 ;; Detecting your key holding, automatically convert a series of lowercase characters to a single uppercase.
@@ -188,15 +213,43 @@ To be compatible with multiple cursors, we have to save the result of mc/num-cur
           (59 . "ö")
           (39 . "ä")
           (34 . "Ä")
-          (91 . "ü")
-          (123 . "Ü")
-          (59 . "ö")
-          (?- . "ß")
+          (?- . "ü")
+          (?_ . "Ü")
           (?= . "+")
           (?, . "<")
           (?. . ">")
+          (?' . "\"")
+          (?S . "ß")
+          (?F . "|")
+          (?X . "\\")
+)))
+
+
+(defun shiftless-programming ()
+  (setq shiftless-upper-rules
+        '((?` . "~")
+          (?/ . "?")
+          (92 . "|")
+          (49 . "!")
+          (50 . "@")
+          (51 . "#")
+          (52 . "$")
+          (53 . "%")
+          (54 . "^")
+          (55 . "&")
+          (56 . "*")
+          (57 . "(")
+          (48 . ")")
           (59 . ":")
-          (?' . "\""))))
+          (39 . "\"")
+          (?- . "_")
+          (?= . "+")
+          (?, . "<")
+          (?. . ">")
+          (?' . "\"")
+          (?F . "|")
+          (?X . "\\")
+)))
 
 (defun shiftless--enable ()
   (add-hook 'post-self-insert-hook 'shiftless--after-self-insert))

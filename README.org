@@ -1,3 +1,31 @@
 #+title: shiftless.el
 
-Für Umlaut.
+* Shiftless for Umlaut (qwerty)
+forked from [[https://github.com/DogLooksGood/shiftless.el][GitHub - DogLooksGood/shiftless.el: Insert uppercase without shift.]]
+** Umlaut mode
+#+BEGIN_SRC
+; -> ö
+: -> Ö
+' -> ä
+" -> Ä
+- -> ü
+_ -> Ü
+S (upper case) -> ß
+#+END_SRC
+** Usage
+*** Function for switching to programming mode:
+#+BEGIN_SRC elisp
+(shiftless-programming)
+#+END_SRC
+*** Function for switching to Umlaut mode:
+#+BEGIN_SRC elisp
+(shiftless-Umlaut)
+#+END_SRC
+*** you can add Umlaut hook to Org-mode, e.g.
+#+BEGIN_SRC elisp
+  (defun weiss-org-option ()
+    (make-local-variable 'shiftless-upper-rules)
+    (shiftless-Umlaut)
+    )
+  (add-hook 'org-mode-hook 'weiss-org-option)
+#+END_SRC
