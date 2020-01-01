@@ -25,6 +25,8 @@
 ;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 ;; Boston, MA 02110-1301, USA.
 
+;;; für Umlaut
+
 ;;; Commentary:
 ;; Detecting your key holding, automatically convert a series of lowercase characters to a single uppercase.
 ;;
